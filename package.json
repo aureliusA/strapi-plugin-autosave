@@ -1,5 +1,5 @@
 {
-  "name": "autosave",
+  "name": "strapi-plugin-autosave",
   "version": "1.0.0",
   "description": "autosave",
   "main": "strapi-admin.js",
