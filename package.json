@@ -1,0 +1,31 @@
+{
+  "name": "autosave",
+  "version": "1.0.0",
+  "description": "autosave",
+  "main": "strapi-admin.js",
+  "scripts": {
+    "test": "run"
+  },
+  "strapi": {
+    "displayName": "Preview Button",
+    "name": "preview-button",
+    "description": "Adds a preview button and live view button to the content manager edit view.",
+    "kind": "plugin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aureliusA/strapi-plugin-autosave"
+  },
+  "dependencies": {
+    "@strapi/helper-plugin": "4.25.12"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": ">=4.0.0 <5.0.0"
+  },
+  "keywords": [
+    "strapi",
+    "plugin"
+  ],
+  "author": "aureliusA",
+  "license": "MIT"
+}
