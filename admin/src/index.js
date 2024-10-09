@@ -1,4 +1,4 @@
-import { PLUGIN_ID } from './pluginId';
+import PLUGIN_ID from './pluginId';
 import AutoSaveComponent from "./components/AutoSave";
 
 export default {
