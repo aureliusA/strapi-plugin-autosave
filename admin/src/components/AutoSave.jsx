@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { useCMEditViewDataManager } from '@strapi/helper-plugin';
-import { getFetchClient } from '@strapi/helper-plugin';
+import { useCMEditViewDataManager, getFetchClient } from '@strapi/helper-plugin';
 
 const AutoSaveComponent = () => {
   const { modifiedData, initialData, hasDraftAndPublish, allLayoutData } = useCMEditViewDataManager();
