@@ -23,7 +23,7 @@ const AutoSaveComponent = () => {
         if (hasDataChanged()) {
           await put(`/content-manager/collection-types/${allLayoutData.contentType.uid}/${modifiedData.id}`, modifiedData);
           document.querySelector('button[type="submit"]').setAttribute('aria-disabled', 'true');
-          document.querySelector('button[type="button"]').setAttribute('aria-disabled', 'false');
+          document.querySelector('main button[type="button"]').setAttribute('aria-disabled', 'false');
         }
       }, 1000);
     }
