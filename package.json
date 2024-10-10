@@ -1,15 +1,15 @@
 {
   "name": "strapi-plugin-autosave",
   "version": "1.0.0",
-  "description": "autosave",
+  "description": "Adds ability to autosave draft edited entities",
   "main": "strapi-admin.js",
   "scripts": {
     "test": "run"
   },
   "strapi": {
-    "displayName": "Preview Button",
-    "name": "preview-button",
-    "description": "Adds a preview button and live view button to the content manager edit view.",
+    "displayName": "Autosave",
+    "name": "autosave",
+    "description": "Adds ability to autosave draft edited entities.",
     "kind": "plugin"
   },
   "repository": {
