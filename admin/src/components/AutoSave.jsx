@@ -1,9 +1,16 @@
 import { useEffect } from 'react';
 import { useCMEditViewDataManager, getFetchClient } from '@strapi/helper-plugin';
+const { put } = getFetchClient();
+
+async function updateData(uid, modifiedData) {
+  const result = await put(`/content-manager/collection-types/${uid}/${modifiedData.id}`, modifiedData);
+  if (result.status >= 400) return;
+  document.querySelector('button[type="submit"]').setAttribute('aria-disabled', 'true');
+  document.querySelector('main button[type="button"]').setAttribute('aria-disabled', 'false');
+}
 
 const AutoSaveComponent = () => {
   const { modifiedData, initialData, hasDraftAndPublish, allLayoutData } = useCMEditViewDataManager();
-  const { put } = getFetchClient();
   let timer;
   const isPublished = !!modifiedData.publishedAt;
   useEffect(() => {
@@ -15,7 +22,6 @@ const AutoSaveComponent = () => {
     };
 
     if (hasDataChanged()) {
-      console.log('changed');
       document.querySelector('button[type="submit"]').setAttribute('aria-disabled', 'false');
       document.querySelector('main button[type="button"]').setAttribute('aria-disabled', 'true');
 
@@ -26,10 +32,7 @@ const AutoSaveComponent = () => {
       timer = setTimeout(async () => {
         if (hasDataChanged()) {
           try {
-            const result = await put(`/content-manager/collection-types/${allLayoutData.contentType.uid}/${modifiedData.id}`, modifiedData);
-            if (result.status < 400) return;
-            document.querySelector('button[type="submit"]').setAttribute('aria-disabled', 'true');
-            document.querySelector('main button[type="button"]').setAttribute('aria-disabled', 'false');
+            await updateData(allLayoutData.contentType.uid, modifiedData);
           } catch (e) {
             console.error({ errorDuringAutosaving: e });
           }
