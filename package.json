@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-autosave",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adds ability to autosave draft edited entities",
   "main": "strapi-admin.js",
   "scripts": {

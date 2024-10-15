@@ -15,15 +15,24 @@ const AutoSaveComponent = () => {
     };
 
     if (hasDataChanged()) {
+      console.log('changed');
+      document.querySelector('button[type="submit"]').setAttribute('aria-disabled', 'false');
+      document.querySelector('main button[type="button"]').setAttribute('aria-disabled', 'true');
+
       if (timer) {
         clearTimeout(timer);
       }
 
       timer = setTimeout(async () => {
         if (hasDataChanged()) {
-          await put(`/content-manager/collection-types/${allLayoutData.contentType.uid}/${modifiedData.id}`, modifiedData);
-          document.querySelector('button[type="submit"]').setAttribute('aria-disabled', 'true');
-          document.querySelector('main button[type="button"]').setAttribute('aria-disabled', 'false');
+          try {
+            const result = await put(`/content-manager/collection-types/${allLayoutData.contentType.uid}/${modifiedData.id}`, modifiedData);
+            if (result.status < 400) return;
+            document.querySelector('button[type="submit"]').setAttribute('aria-disabled', 'true');
+            document.querySelector('main button[type="button"]').setAttribute('aria-disabled', 'false');
+          } catch (e) {
+            console.error({ errorDuringAutosaving: e });
+          }
         }
       }, 1000);
     }
